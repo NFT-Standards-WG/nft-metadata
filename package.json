@@ -6,7 +6,7 @@
     "ts-json-schema-generator": "^0.95.0"
   },
   "scripts": {
-    "build:schema": "ts-json-schema-generator --path nft-metadata.ts --additional-properties true -o nft-metadata-schema.json --type 'NftMetadataMediaTypes' --type 'Asset'",
-    "build:docs": "generate-schema-doc nft-metadata-schema.json docs/index.html"
+    "draft-1:build:schema": "cd schema-draft-1 && ts-json-schema-generator --path ./nft-metadata.ts --additional-properties true -o ./nft-metadata-schema.json --type 'NftMetadataMediaTypes'",
+    "draft-1:build:docs": "cd schema-draft-1 && generate-schema-doc ./nft-metadata-schema.json ./docs/index.html"
   }
 }
