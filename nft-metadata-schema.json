@@ -1,0 +1,517 @@
+{
+  "$ref": "#/definitions/NftMetadataMediaTypes",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Asset": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/URI"
+        },
+        {
+          "description": "An object representing a resource. `url` points to its location, and `type` could be any valid Media Type [1].\n\n[1] https://www.iana.org/assignments/media-types/media-types.xhtml",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "$ref": "#/definitions/URI"
+            }
+          },
+          "required": [
+            "url",
+            "type"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "Represents an asset of any type. It could be a simple URI as a string, or a MediaTypeUrl."
+    },
+    "Audio": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/URI"
+        },
+        {
+          "description": "An object representing a resource. `url` points to its location, and `type` could be any valid Media Type [1].\n\n[1] https://www.iana.org/assignments/media-types/media-types.xhtml",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "$ref": "#/definitions/URI"
+            }
+          },
+          "required": [
+            "url",
+            "type"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "Represents an audio asset. It could be a URI as a string, or a MediaTypeUrl."
+    },
+    "Image": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/URI"
+        },
+        {
+          "properties": {
+            "sizes": {
+              "description": "Represents the possible sizes of a visual asset (image or video). It can take a single resolution or multiple, if supported by the format (e.g. .ico files support multiple sizes).\n\nExamples:\n\n- \"1280x720\"\n- \"72x72 96x96 128x128 256x256\"",
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "$ref": "#/definitions/URI"
+            }
+          },
+          "required": [
+            "sizes",
+            "type",
+            "url"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "Represents an image asset. It could be a URI as a string, or a MediaTypeUrl with an additional `sizes` field."
+    },
+    "NftMetadataAudio": {
+      "properties": {
+        "audio": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Audio"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Audio"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Either a URI pointing to a resource with mime type audio/* this NFT represents, or an Audio object, or an array of Audio objects to provide alternative formats."
+        },
+        "author_name": {
+          "description": "A name that represents the author of the NFT. It could be a person or an entity.",
+          "type": "string"
+        },
+        "author_url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource representing the author of the NFT, which could be a person or an entity."
+        },
+        "description": {
+          "description": "Describes the asset to which this NFT represents",
+          "type": "string"
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Image"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Image"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Either a URI pointing to a resource with mime type image/* this NFT represents (see EIP-721), or an Image object, or an array of Image objects to provide alternative formats.\n\nFor example, this image could point to an album cover corresponding to the audio file.\n\nThis is an optional field."
+        },
+        "minter_name": {
+          "description": "A name representing the minter of the NFT. For example, it could be the name of a service used to mint the NFT.",
+          "type": "string"
+        },
+        "minter_url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource representing the minter of the NFT."
+        },
+        "name": {
+          "description": "Identifies the asset to which this NFT represents",
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "items": {
+                },
+                "type": "array"
+              }
+            ]
+          },
+          "description": "Arbitrary properties. Values may be strings, numbers, object or arrays.",
+          "type": "object"
+        },
+        "type": {
+          "const": "audio",
+          "description": "Use this type to indicate that the NFT is mostly representing an audio asset.",
+          "type": "string"
+        },
+        "url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource this NFT represents"
+        },
+        "version": {
+          "const": "nft-media-types:1",
+          "description": "Identifies the JSON schema version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "audio",
+        "description",
+        "name",
+        "type",
+        "version"
+      ],
+      "type": "object"
+    },
+    "NftMetadataImage": {
+      "properties": {
+        "author_name": {
+          "description": "A name that represents the author of the NFT. It could be a person or an entity.",
+          "type": "string"
+        },
+        "author_url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource representing the author of the NFT, which could be a person or an entity."
+        },
+        "description": {
+          "description": "Describes the asset to which this NFT represents",
+          "type": "string"
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Image"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Image"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Either a URI pointing to a resource with mime type image/* this NFT represents (see EIP-721), or an Image object, or an array of Image objects to provide alternative formats."
+        },
+        "minter_name": {
+          "description": "A name representing the minter of the NFT. For example, it could be the name of a service used to mint the NFT.",
+          "type": "string"
+        },
+        "minter_url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource representing the minter of the NFT."
+        },
+        "name": {
+          "description": "Identifies the asset to which this NFT represents",
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "items": {
+                },
+                "type": "array"
+              }
+            ]
+          },
+          "description": "Arbitrary properties. Values may be strings, numbers, object or arrays.",
+          "type": "object"
+        },
+        "type": {
+          "const": "image",
+          "description": "Use this type to indicate that the NFT is mostly representing an image assset.",
+          "type": "string"
+        },
+        "url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource this NFT represents"
+        },
+        "version": {
+          "const": "nft-media-types:1",
+          "description": "Identifies the JSON schema version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "image",
+        "name",
+        "type",
+        "version"
+      ],
+      "type": "object"
+    },
+    "NftMetadataMediaTypes": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/NftMetadataImage"
+        },
+        {
+          "$ref": "#/definitions/NftMetadataAudio"
+        },
+        {
+          "$ref": "#/definitions/NftMetadataVideo"
+        },
+        {
+          "$ref": "#/definitions/NftMetadataOther"
+        }
+      ]
+    },
+    "NftMetadataOther": {
+      "properties": {
+        "asset": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Asset"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Asset"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Either a URI pointing to a resource this NFT represents, or an Asset, or an array of Asset objects to provide alternative formats."
+        },
+        "author_name": {
+          "description": "A name that represents the author of the NFT. It could be a person or an entity.",
+          "type": "string"
+        },
+        "author_url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource representing the author of the NFT, which could be a person or an entity."
+        },
+        "description": {
+          "description": "Describes the asset to which this NFT represents",
+          "type": "string"
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Image"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Image"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Either a URI pointing to a resource with mime type image/* this NFT represents (see EIP-721), or an Image object, or an array of Image objects to provide alternative formats.\n\nThis is an optional field."
+        },
+        "minter_name": {
+          "description": "A name representing the minter of the NFT. For example, it could be the name of a service used to mint the NFT.",
+          "type": "string"
+        },
+        "minter_url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource representing the minter of the NFT."
+        },
+        "name": {
+          "description": "Identifies the asset to which this NFT represents",
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "items": {
+                },
+                "type": "array"
+              }
+            ]
+          },
+          "description": "Arbitrary properties. Values may be strings, numbers, object or arrays.",
+          "type": "object"
+        },
+        "type": {
+          "const": "other",
+          "description": "Use this type to indicate that the NFT is representing something that is not an image, audio or video.",
+          "type": "string"
+        },
+        "url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource this NFT represents"
+        },
+        "version": {
+          "const": "nft-media-types:1",
+          "description": "Identifies the JSON schema version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "asset",
+        "description",
+        "name",
+        "type",
+        "version"
+      ],
+      "type": "object"
+    },
+    "NftMetadataVideo": {
+      "properties": {
+        "author_name": {
+          "description": "A name that represents the author of the NFT. It could be a person or an entity.",
+          "type": "string"
+        },
+        "author_url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource representing the author of the NFT, which could be a person or an entity."
+        },
+        "description": {
+          "description": "Describes the asset to which this NFT represents",
+          "type": "string"
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Image"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Image"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Either a URI pointing to a resource with mime type image/* this NFT represents (see EIP-721), or an Image object, or an array of Image objects to provide alternative formats.\n\nThe image should NOT be a video file but a static image representing it. For example, this image could be used by video players before they start."
+        },
+        "minter_name": {
+          "description": "A name representing the minter of the NFT. For example, it could be the name of a service used to mint the NFT.",
+          "type": "string"
+        },
+        "minter_url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource representing the minter of the NFT."
+        },
+        "name": {
+          "description": "Identifies the asset to which this NFT represents",
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "items": {
+                },
+                "type": "array"
+              }
+            ]
+          },
+          "description": "Arbitrary properties. Values may be strings, numbers, object or arrays.",
+          "type": "object"
+        },
+        "type": {
+          "const": "video",
+          "description": "Use this type to indicate that the NFT is mostly representing a video assset.",
+          "type": "string"
+        },
+        "url": {
+          "$ref": "#/definitions/URI",
+          "description": "A URI pointing to a resource this NFT represents"
+        },
+        "version": {
+          "const": "nft-media-types:1",
+          "description": "Identifies the JSON schema version",
+          "type": "string"
+        },
+        "video": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Video"
+            },
+            {
+              "items": {
+                "$ref": "#/definitions/Video"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Either a URI pointing to a resource with mime type video/* this NFT represents, or an Video object, or an array of Video objects to provide alternative formats."
+        }
+      },
+      "required": [
+        "description",
+        "image",
+        "name",
+        "type",
+        "version",
+        "video"
+      ],
+      "type": "object"
+    },
+    "URI": {
+      "description": "A URI is a string pointing to a location, it can be using one of the many schemes available [1]. Using http(s), data or ipfs URI schemes should provide the best results in terms of compatibility.",
+      "type": "string"
+    },
+    "Video": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/URI"
+        },
+        {
+          "properties": {
+            "sizes": {
+              "description": "Represents the possible sizes of a visual asset (image or video). It can take a single resolution or multiple, if supported by the format (e.g. .ico files support multiple sizes).\n\nExamples:\n\n- \"1280x720\"\n- \"72x72 96x96 128x128 256x256\"",
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "$ref": "#/definitions/URI"
+            }
+          },
+          "required": [
+            "sizes",
+            "type",
+            "url"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "Represents a video asset. It could be a URI as a string, or a MediaTypeUrl with an additional `sizes` field."
+    }
+  }
+}

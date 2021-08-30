@@ -1,0 +1,12 @@
+{
+  "name": "nft-metadata",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "ts-json-schema-generator": "^0.95.0"
+  },
+  "scripts": {
+    "build:schema": "ts-json-schema-generator --path nft-metadata.ts --additional-properties true -o nft-metadata-schema.json --type 'NftMetadataMediaTypes' --type 'Asset'",
+    "build:docs": "generate-schema-doc nft-metadata-schema.json docs/index.html"
+  }
+}
