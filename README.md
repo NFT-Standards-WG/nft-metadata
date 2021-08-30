@@ -1,4 +1,4 @@
-# A proposal to improve the NFT metadata standards
+A proposal to improve the NFT metadata standards.
 
 ```ts
 /**
