@@ -2,8 +2,8 @@
 eip: <to be assigned>
 title: JSON Metadata Standard
 description: a specification for JSONs of metadata
-author: (Pierre Bertet)[https://github.com/bpierre]
-discussions-to: (nftstandards.wtf)[https://www.nftstandards.wtf/]
+author: Pierre Bertet https://github.com/bpierre
+discussions-to: https://www.nftstandards.wtf/
 status: Draft
 type: <Standards Track, Meta, or Informational>
 category (*only required for Standards Track): <Core, Networking, Interface, or ERC>
