@@ -2,8 +2,8 @@
 eip: <to be assigned>
 title: JSON Metadata Standard
 description: a specification for JSONs of metadata
-author: <a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s), e.g. (use with the parentheses or triangular brackets): FirstName LastName (@GitHubUsername), FirstName LastName <foo@bar.com>, FirstName (@GitHubUsername) and GitHubUsername (@GitHubUsername)>
-discussions-to: <URL>
+author: [Pierre Bertet](https://github.com/bpierre)
+discussions-to: [nftstandards.wtf](https://www.nftstandards.wtf/)
 status: Draft
 type: <Standards Track, Meta, or Informational>
 category (*only required for Standards Track): <Core, Networking, Interface, or ERC>
